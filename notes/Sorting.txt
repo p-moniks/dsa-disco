@@ -2,6 +2,7 @@
 ##  Array SORTING Algorithms ##
 
 1. BUBBLE SORT
+
 ~~ iterative ~~
 -compare adjacent elements
 -swap if out of order
@@ -10,29 +11,37 @@
 
 each iterations sorts one elemts from the end of array
 outer loop: i=0 -> n-1
-inner loop: j =1 -> n-1-i
+inner loop: j =0 -> n-1-i
 T -> O(n2)
 S -> O(1)
 
 
 2. INSERTION SORT
-~~ recursive technique ~~
+
+~~ iterative technique ~~
 array is considered as two parts - sorted & unsorted
 idea is to take the top(first) element of the unsorted array and INSERT it at the correct location in the sorted array by shifting existing elements
 each iteration reduces unsorted and increases sorted eventually whole array sorted
 
-partition function --(main logic of inserting at correct position)
+outer loop: i=1 -> n (end of arr)
+inner loop: j=i-1 -> 0  (ulta chalenge)
+current element being compared -> temp
 
-
-T -> O(nlog n)
+T -> O(n2)
 S ->
 
 
 3. SELECTION SORT
-~~ recursive ~~
-array - sorted & unsorted
-here we SELECT the minimum from the unsorted part and put it in sorted array
-idea of 
+
+~~ iterative ~~
+array sorted & unsorted
+here we SELECT the minimum from the unsorted part and start putting in array in sequential order 
+(by swapping the current pos with the min pos in each iteration)
+
+keep track of positions 
+
+outer loop: i = 0 -> n-1
+inner loop: j = i+1 -> n
 
 T ->
 S ->
@@ -41,6 +50,7 @@ S ->
 4. QUICK SORT
 
 
+partition function --(main logic of inserting at correct position)
 
 
 5. MERGE SORT

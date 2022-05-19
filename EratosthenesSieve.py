@@ -10,10 +10,17 @@ Sieve of eratosthenes for prime numbers
 
 def sieve_of_ertosthenes(n:int):
     #to store the num
+    # long method
+    p=[]
+    for i in range(n+1):
+        p.append(True)
+        
+    p[0]=False
+    p[1]=False
     
-    # fill with true
+    # fill with true short method
     primes = [True for i in range(n+1)]
-    
+    primes[1] =False
     
     
     j =2
