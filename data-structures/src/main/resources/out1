@@ -1,0 +1,32 @@
+-1 -1 -1 -1 -1 -1 1 2 3 4 5 6 7   *****    
+Enter node data: 10
+enter left for 10: 
+Enter node data: 7
+enter left for 7: 
+Enter node data: -1
+enter right for 7: 
+Enter node data: -1
+enter right for 10: 
+Enter node data: 15
+enter left for 15: 
+Enter node data: 12
+enter left for 12: 
+Enter node data: 8
+enter left for 8: 
+Enter node data: -1
+enter right for 8: 
+Enter node data: -1
+enter right for 12: 
+Enter node data: 17
+enter left for 17: 
+Enter node data: -1
+enter right for 17: 
+Enter node data: -1
+enter right for 15: 
+Enter node data: 20
+enter left for 20: 
+Enter node data: -1
+enter right for 20: 
+Enter node data: -1
+7 10 8 12 17 15 20 -- level order --
+10 7 15 12 20 8 17 

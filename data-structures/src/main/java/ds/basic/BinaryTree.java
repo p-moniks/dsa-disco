@@ -1,8 +1,13 @@
 package ds.basic;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map;
+import java.util.Queue;
 import java.util.Scanner;
 
 public class BinaryTree {
@@ -21,8 +26,12 @@ public class BinaryTree {
 		System.out.println("  *****    ");
 		
 		BinaryTree t2 = new BinaryTree();
+//		t2.root = t2.createTreeFromUser("tree-input.txt");
 		t2.root = createTreeFromUser();
 		t2.inOrder(t2.root);
+		
+		System.out.println("-- level order --");
+		t2.levelOrderln(t2.root);
 		
 
 //		System.out.println(String.format("node count : %d", mytree.countNodes(root)));
@@ -43,8 +52,39 @@ public class BinaryTree {
 //		mytree.inOrder(root);
 	}
 	
-	public void printTree(Node root) {
-		
+	public void levelOrderln(Node root) {
+		Queue<Node> q = new LinkedList<>();
+		q.add(root);
+		q.add(null);
+		while(!q.isEmpty()) {
+			Node current = q.poll();
+			if(current ==null) {
+				if(q.isEmpty())
+					return;
+
+				q.add(null);
+				System.out.println();
+				continue;
+			}
+			System.out.print(current.data+" ");
+			if(current.left!=null)
+				q.add(current.left);
+			if(current.right!=null)
+				q.add(current.right);
+		}
+	}
+	
+	public void levelOrder (Node root) {
+		Queue<Node> q = new LinkedList<>();
+		q.add(root);
+		while(!q.isEmpty()) {
+			Node current = q.poll();
+			System.out.print(current.data+" ");
+			if(current.left!=null)
+				q.add(current.left);
+			if(current.right!=null)
+				q.add(current.right);
+		}
 	}
 	public Map levelOrderHm(Node n, int level ) {
 		if(n==null)
@@ -55,7 +95,7 @@ public class BinaryTree {
 		levelMap.put(level, currlist);
 		
 		levelOrderHm(n.left, level+1);
-		levelOrderHm(n.right, level+1);
+		return levelOrderHm(n.right, level+1);
 		
 	}
 	public int getHeight(Node root) {
@@ -114,6 +154,26 @@ public class BinaryTree {
 		
 		return root;
 	}
+	public  Node createTreeFromUser(String filename) {
+		Node root=null;
+		InputStream is = this.getClass().getResourceAsStream("/"+filename);
+		sc = new Scanner(is);
+		
+		System.out.print("Enter node data: ");
+		int data = sc.nextInt();
+		
+		if(data ==-1)
+			return null;
+		
+		root = new Node(data);
+		
+		System.out.println("enter left for "+data+": ");
+		root.left = createTreeFromUser();
+		System.out.println("enter right for "+data+": ");
+		root.right =  createTreeFromUser();
+		
+		return root;
+	}
 	
 	public void buildTree(int[] nodes) {
 		
@@ -134,9 +194,9 @@ public class BinaryTree {
 		if(current == null) {
 			return new Node(value);
 		}
-		if (value <= current.data)
+		if (current.left == null)
 			current.left = addRecursive(current.left, value);
-		if (value > current.data)
+		else
 			current.right = addRecursive(current.right, value);
 
 		return current;
