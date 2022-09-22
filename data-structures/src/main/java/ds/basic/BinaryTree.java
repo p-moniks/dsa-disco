@@ -1,7 +1,5 @@
 package ds.basic;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,13 +7,14 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
 import java.util.Scanner;
+import java.util.Stack;
 
 public class BinaryTree {
 
 	Node root;
 	
 	public static void main(String[] args) {
-		int [] nodes = {5,1,2,-1,-1,4,3,-1,-1,6,-1,-1,7};
+		int [] nodes = {5,1,2,4,3,6,7};
 		BinaryTree mytree = BinaryTree.addAll(nodes);
 		Node root = mytree.root;
 //		mytree.preOrder(root);
@@ -25,14 +24,16 @@ public class BinaryTree {
 		mytree.inOrder(root);
 		System.out.println("  *****    ");
 		
-		BinaryTree t2 = new BinaryTree();
-//		t2.root = t2.createTreeFromUser("tree-input.txt");
-		t2.root = createTreeFromUser();
-		t2.inOrder(t2.root);
+		System.out.println(mytree.inOrderStack(root));
 		
-		System.out.println("-- level order --");
-		t2.levelOrderln(t2.root);
-		
+//		BinaryTree t2 = new BinaryTree();
+////		t2.root = t2.createTreeFromUser("tree-input.txt");
+//		t2.root = createTreeFromUser();
+//		t2.inOrder(t2.root);
+//		
+//		System.out.println("-- level order --");
+//		t2.levelOrderln(t2.root);
+//		
 
 //		System.out.println(String.format("node count : %d", mytree.countNodes(root)));
 //		
@@ -86,7 +87,7 @@ public class BinaryTree {
 				q.add(current.right);
 		}
 	}
-	public Map levelOrderHm(Node n, int level ) {
+	public Map<Integer,ArrayList<Integer>> levelOrderHm(Node n, int level ) {
 		if(n==null)
 			return null;
 		Map<Integer,ArrayList<Integer>> levelMap = new HashMap<>();
@@ -120,6 +121,27 @@ public class BinaryTree {
 		preOrder(root.right);
 					
 	}
+	
+	public ArrayList<Integer> inOrderStack(Node root){
+		ArrayList<Integer> list = new ArrayList<Integer>();
+//		Stack s = new LinkedList<Node>();
+//		Deque<Node> stack = new ArrayDeque<Node>();
+		Stack <Node> stack = new Stack<>();
+		Node curr = root;
+		while (!stack.isEmpty() || curr != null) {
+			while(curr!=null) {
+				stack.add(curr);
+				curr = curr.left;
+			}
+			curr = stack.pop();
+			list.add(curr.data);
+			curr = curr.right;
+			
+		}
+		return list;
+	}
+		
+		
 	public void inOrder(Node root) {
 		if(root == null)
 			return;
